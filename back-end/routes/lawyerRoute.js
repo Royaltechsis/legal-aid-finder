@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const lawyerController = require('../controllers/lawyerController');
+const lawyerController = require('../controllers/lawyerController'); // Ensure correct import
 
-router.post('/lawyers/register', lawyerController.registerlawyer);
-router.get('/lawyers', lawyerController.getAlllawyers);
-router.get('/lawyers/:id', lawyerController.getlawyerById);
-router.put("/lawyers/profile/:id",  updateLwyerProfile);
-router.delete('/lawyers/:id', lawyerController.deletelawyer);
+// Define routes correctly
+router.post('/register', lawyerController.registerLawyer);
+router.get('/', lawyerController.getAllLawyers);
+router.get('/:id', lawyerController.getLawyerById);
+router.put('/:id', lawyerController.updateLawyerProfile);
+router.delete('/:id', lawyerController.deleteLawyer);
 
 module.exports = router;

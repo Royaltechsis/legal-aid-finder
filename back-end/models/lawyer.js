@@ -21,7 +21,7 @@ const LawyerSchema = new mongoose.Schema({
     },
     profilepic:{
         type: String,
-        required
+        required: false,
     },
     password: {
         type: String,
@@ -34,5 +34,5 @@ const LawyerSchema = new mongoose.Schema({
 });
 
 // Create and Export Model
-const Lawyer = mongoose.model('Lawyer', LawyerSchema);
-module.exports = Lawyer;
+const Lawyers = mongoose.model('Lawyers', LawyerSchema);
+module.exports = Lawyers;

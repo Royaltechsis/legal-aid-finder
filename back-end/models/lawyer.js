@@ -21,7 +21,7 @@ const LawyerSchema = new mongoose.Schema({
     },
     profilepic:{
         type: String,
-        required
+        required: true
     },
     password: {
         type: String,

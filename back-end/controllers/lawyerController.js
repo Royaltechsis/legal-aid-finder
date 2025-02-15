@@ -1,38 +1,52 @@
-const Lawyers = require('../models/lawyer'); // import lawyers model
-const bycrypt = require('bcryptjs'); // import bycrypt for hashing passwords
+const Lawyers = require('../models/lawyer'); // Import the Lawyers model
+ const bcrypt = require('bcryptjs'); // Import bcrypt for hashing passwords
 
-
-// register lawyers 
-
+// Register lawyer
 exports.registerLawyer = async (req, res) => {
-    try{
-        const { name, email, niche, password } = req.body;
+    try {
+        const { name, email, niche, bio, profilepic, password } = req.body;
 
-        // check if lawyer already exists
-        let lawyer = await Lawyers.findOne({email});
-        if(lawyer){
-            return res.status(400).json({msg: 'Lawyer already exists'});
+        // Log the request body for debugging
+        console.log('Request Body:', req.body);
+
+        // Check if all required fields are provided
+        if (!name || !email || !niche || !password) {
+            return res.status(400).json({ msg: 'Please provide all required fields' });
+        }
+
+        // Check if lawyer already exists
+        let lawyer = await Lawyers.findOne({ email });
+        if (lawyer) {
+            return res.status(400).json({ msg: 'Lawyer already exists' });
         }
 
         // Hash password
-        const hashedPassword = await bcrypt.hash(password, 10);
+       const hashedPassword = await bcrypt.hash(password, 10);
 
-         // Create and save lawyer
-        const newlawyer = new lawyer({ name, email, password: hashedPassword });
-        await newlawyer.save();
+        // Create and save lawyer
+        const newLawyer = new Lawyers({
+            name,
+            email,
+            niche,
+            bio,
+            profilepic,
+            password : hashedPassword
+        });
 
-        res.status(201).json({ message: 'lawyer registered successfully', lawyer: newlawyer });
-    }
-    catch (err) {
+        await newLawyer.save();
+
+        res.status(201).json({ message: 'Lawyer registered successfully', lawyer: newLawyer });
+    } catch (err) {
+        console.error('Error:', err); // Log the error for debugging
         res.status(500).json({ error: err.message });
     }
-}
+};
 
 
 // Get all lawyers
 exports.getAllLawyers = async (req, res) => {
     try {
-        const lawyers = await lawyer.find();
+        const lawyers = await Lawyers.find();
         res.status(200).json(lawyers);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -42,9 +56,9 @@ exports.getAllLawyers = async (req, res) => {
 // Get lawyer by ID
 exports.getLawyerById = async (req, res) => {
     try {
-        const lawyer = await lawyer.findById(req.params.id);
+        const lawyer = await Lawyers.findById(req.params.id);
         if (!lawyer) {
-            return res.status(404).json({ message: 'lawyer not found' });
+            return res.status(404).json({ message: 'Lawyer not found' });
         }
         res.status(200).json(lawyer);
     } catch (err) {
@@ -53,37 +67,39 @@ exports.getLawyerById = async (req, res) => {
 };
 
 
-
+// Update lawyer profile
 exports.updateLawyerProfile = async (req, res) => {
     try {
-        const userId = req.params.id; // Get user ID from URL
+        const lawyerId = req.params.id; // Get lawyer ID from URL
         const updates = req.body; // Get new profile data
 
-        // Find user and update
-        const updatedUser = await User.findByIdAndUpdate(userId, updates, { 
-            new: true, // Return updated user
+        // Find lawyer and update
+        const updatedLawyer = await Lawyers.findByIdAndUpdate(lawyerId, updates, {
+            new: true, // Return updated lawyer
             runValidators: true // Ensure validation rules apply
         });
 
-        if (!updatedUser) {
-            return res.status(404).json({ message: "User not found" });
+        if (!updatedLawyer) {
+            return res.status(404).json({ message: "Lawyer not found" });
         }
 
-        res.status(200).json({ message: "Profile updated", user: updatedUser });
+        res.status(200).json({ message: "Profile updated", lawyer: updatedLawyer });
     } catch (error) {
         res.status(500).json({ message: "Error updating profile", error: error.message });
     }
 };
 
-
+// Delete lawyer by ID
 // Delete lawyer by ID
 exports.deleteLawyer = async (req, res) => {
     try {
-        const lawyer = await lawyer.findByIdAndDelete(req.params.id);
+        const lawyerId = req.params.id; // Get lawyer ID from URL
+
+        const lawyer = await Lawyers.findByIdAndDelete(lawyerId);
         if (!lawyer) {
-            return res.status(404).json({ message: 'lawyer not found' });
+            return res.status(404).json({ message: 'Lawyer not found' });
         }
-        res.status(200).json({ message: 'lawyer deleted successfully' });
+        res.status(200).json({ message: 'Lawyer deleted successfully' });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

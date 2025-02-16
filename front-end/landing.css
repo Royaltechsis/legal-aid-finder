@@ -114,97 +114,168 @@ body {
 #hero {
     background-image: url(Images/background\ image\ 1.jpg);
     position: relative;
-    height: 70vh;
+    height: 40vh;
     width: 100%;
     padding: 0 100px;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 #hero h1 {
-padding-top: 30px;
-color: darkgoldenrod;
-}
-
-#hero h4 {
-    padding-left: 40px;
+    font-size: 36px;
+    padding-top: 40px;
+    margin: 0;
     color: darkgoldenrod;
 }
 
-#hero h3 {
-    font-size: 25px;
-    color: darkgoldenrod;
-}
 #hero p {
+    font-size: 18px;
     color: white;
 }
 
-/********** CTA Button ************/
-.cta-button {
-    background-color: darkgoldenrod;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 4px;
-    display: inline-block;
-    margin-top: 20px;
+/************* About *************/
+#about {
+    padding-top: 10px;
+    justify-items: center;
 }
 
-.cta-button:hover {
-    background-color: white;
-    color: darkgoldenrod;
+#about h1 {
+    font-size: 30px;
 }
 
-
-/*********** Form Styles ************/
-#form {
-    max-width: 400px;
+#about .container {
+    width: 80%;
     margin: 0 auto;
-    text-align: left;
+    padding: 20px;
+    background-color: #ccc;
 }
 
-form input, form select, form textarea, form button {
-    width: 50%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-form button {
+#about .section {
+    display: flex;
+    align-items: center;
     background-color: darkgoldenrod;
-    color: white;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px 
+}
+   
+
+#about .section .content {
+    flex: 1;
+}
+
+#about .section .content .h3{
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+#about .section .content .p {
+    margin: 0 0 10px;
+}
+
+#about .section .content button {
+    padding: 10px 20px;
+    background-color: darkgoldenrod;
     border: none;
     cursor: pointer;
-    padding: 10px 10px;
 }
 
-form button:hover {
-    background-color: white;
-    color: darkgoldenrod;
-}
-
-/************ Footer **********/
-footer {
-    background-color: darkgoldenrod;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-    margin-top: 20px;
-}
-
-footer p {
-    margin: 5px 0;
-    color: white;
-}
-
-footer a {
+#about .section .content  a {
     color: black;
     text-decoration: none;
 }
-footer a:hover {
+
+#about .section .content button:hover {
+    background-color: white;
+}
+
+/************* Lawyer ***********/
+#lawyer {
+    padding-top: 10px;
+    justify-items: center;
+}
+
+#lawyer h1{
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#lawyer .container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ccc;
+    display: flex;
+    justify-content: space-between;
+}
+
+#lawyer .profile-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#lawyer .profile {
+    background-color: darkgoldenrod;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#lawyer .profile .h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#lawyer .profile .p {
+    font-size: 14px;
+    color: #666;
+}
+
+/************ Footer **********/
+.footer {
+    background-color: darkgoldenrod;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-colunm {
+    flex: 1;
+   margin: 0 10px; 
+}
+
+.footer-column h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 5px;
+}
+
+.footer-column ul li a {
     text-decoration: none;
+    color: black;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icons a {
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
 }

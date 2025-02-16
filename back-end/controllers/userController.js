@@ -1,24 +1,25 @@
-const user = require('../models/user');
+const User = require('../models/user'); // Import the User model
 const bcrypt = require('bcryptjs');
 
-//get user info
+// Get user info
 const getUserController = async (req, res) => {
     try {
-        //find user
-        const user = await user.findById({_id: req.body.id});
-        //validation
+        // Find user
+        const user = await User.findById(req.body.id);
+        // Validation
         if (!user) {
             return res.status(404).send({
                 success: false,
                 message: "User not found!",
             });
         }
-        //hide password
+        // Hide password
         user.password = undefined;
         res.status(200).send({
             success: true,
             message: 'Get User Successful',
-        })
+            user
+        });
     } catch (error) {
         console.log(error);
         res.status(500).send({
@@ -28,26 +29,27 @@ const getUserController = async (req, res) => {
     }
 };
 
-//update user info
+// Update user info
 const updateUserController = async (req, res) => {
     try {
-        //find user
-        const user = await user.findById({_id: req.body.id});
-        //validation
+        // Find user
+        const user = await User.findById(req.body.id);
+        // Validation
         if (!user) {
             return res.status(404).send({
                 success: false,
                 message: 'User not found!',
             });
         }
-        //update
-        const {userName, phone} = req.body;
+        // Update
+        const { userName, phone } = req.body;
         if (userName) user.userName = userName;
         if (phone) user.phone = phone;
         await user.save();
         res.status(200).send({
             success: true,
             message: 'User updated Successfully',
+            user
         });
     } catch (error) {
         console.log(error);
@@ -59,25 +61,25 @@ const updateUserController = async (req, res) => {
     }
 };
 
-//reset password
+// Reset password
 const resetPasswordController = async (req, res) => {
     try {
-        const {email, newPassword} = req.body;
+        const { email, newPassword } = req.body;
         if (!email || !newPassword) {
             return res.status(500).send({
                 success: false,
                 message: 'Please provide all fields',
             });
         }
-        const user =await user.findOne({email});
+        const user = await User.findOne({ email });
         if (!user) {
             return res.status(500).send({
                 success: false,
                 message: 'User not found',
             });
         }
-        //hashed password
-        var salt = bcrypt.genSaltSync(10);
+        // Hashed password
+        const salt = bcrypt.genSaltSync(10);
         const hashedPassword = await bcrypt.hash(newPassword, salt);
         user.password = hashedPassword;
         await user.save();
@@ -91,8 +93,8 @@ const resetPasswordController = async (req, res) => {
             success: false,
             message: 'Error in resetting password',
             error,
-        })
+        });
     }
-}
+};
 
-module.exports = {getUserController, updateUserController, resetPasswordController}
+module.exports = { getUserController, updateUserController, resetPasswordController };

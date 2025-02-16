@@ -2,13 +2,30 @@ const JWT = require("jsonwebtoken");
 
 module.exports = async (req, res, next) => {
   try {
-    // get token
-    const token = req.headers["authorization"].split(" ")[1];
+    // Check if authorization header is present
+    const authHeader = req.headers["authorization"];
+    if (!authHeader) {
+      return res.status(401).send({
+        success: false,
+        message: "Authorization header is missing",
+      });
+    }
+
+    // Get token from authorization header
+    const token = authHeader.split(" ")[1];
+    if (!token) {
+      return res.status(401).send({
+        success: false,
+        message: "Token is missing",
+      });
+    }
+
+    // Verify token
     JWT.verify(token, process.env.JWT_SECRET, (err, decode) => {
       if (err) {
         return res.status(401).send({
           success: false,
-          message: "Un-Authorize User",
+          message: "Unauthorized User",
         });
       } else {
         req.body.id = decode.id;

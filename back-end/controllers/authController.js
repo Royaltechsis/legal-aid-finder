@@ -2,14 +2,14 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user'); // Assuming you have a User model
-const { recompileSchema } = require('../models/lawyer');
+//const { recompileSchema } = require('../models/lawyer');
 
 
 // Register a new user
 const registerController = async (req, res) => {
     try {
-        const { userName, email, password, phone, role } = req.body;
-        if (!userName || !email || !password || !phone || !role) {
+        const { userName, email, password, phone } = req.body;
+        if (!userName || !email || !password || !phone ) {
             return res.status(500).send({
                 sucess: false,
                 message: "Please Provide All Fields",
@@ -31,7 +31,6 @@ const registerController = async (req, res) => {
             userName,
             email,
             password: hashedpassword,
-            address,
             phone, 
         });
         res.status(201).send({

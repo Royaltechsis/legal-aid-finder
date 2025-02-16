@@ -1,4 +1,4 @@
-const User = require('../models/user'); // Import the User model
+const { User, LegalCase }= require('../models/user'); // Import the User model
 const bcrypt = require('bcryptjs');
 
 // Get user info
@@ -97,4 +97,62 @@ const resetPasswordController = async (req, res) => {
     }
 };
 
-module.exports = { getUserController, updateUserController, resetPasswordController };
+//Request for legal aid
+const legalAidController = async (req, res) => {
+    try {
+        const {caseType, description, urgency} = req.body;
+        //validation
+        if (!caseType || !description || !urgency) {
+            return res.status(400).send({
+                success: false,
+                message: 'Please provide all fields',
+            });
+        }
+        if (!req.user || !req.user.id) {
+            return res.status(401).send({
+                success: false,
+                message: 'Unauthorized: User not found',
+            });
+        }
+        //create new case
+        const userId = req.user.id;
+        const newCase = new LegalCase({
+            user: userId,
+            caseType,
+            description,
+            urgency,
+        });
+        await newCase.save();
+        res.status(200).send({
+            success: true,
+            message: 'New Case Saved Successfully',
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: 'Error saving new case',
+            error,
+        });
+    }
+};
+
+//Delete User
+const deleteUserController = async (req, res) => {
+    try {
+        await userModel.findByIdAndDelete(req.params.id);
+        return res.status(200).send({
+            success: true,
+            message: "Your account has been deleted",
+          });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+          success: false,
+          message: "Erorr In Deleting account",
+          error,
+        }); 
+    }
+}
+
+module.exports = { getUserController, updateUserController, resetPasswordController, legalAidController, deleteUserController };

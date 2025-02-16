@@ -8,8 +8,8 @@ const User = require('../models/user'); // Assuming you have a User model
 // Register a new user
 const registerController = async (req, res) => {
     try {
-        const { userName, email, password, phone } = req.body;
-        if (!userName || !email || !password || !phone ) {
+        const { userName, email, password, phone, role } = req.body;
+        if (!userName || !email || !password || !phone || !role ) {
             return res.status(500).send({
                 sucess: false,
                 message: "Please Provide All Fields",

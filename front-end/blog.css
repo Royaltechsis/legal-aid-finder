@@ -1,0 +1,176 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "spartan", sans-serif;
+    }
+    
+    h1{
+    font-size: 50px;
+    line-height: 1;
+    color: rgb(245, 243, 240);
+    text-align: center;
+    padding-top: 2em;
+    }
+    
+    h2{
+        font-size: 46px;
+        line-height: 1;
+        color:darkgoldenrod;
+    }
+    
+    h3{
+        font-size: 20px;
+        line-height: 1;
+        color: black;
+        padding: 1em ;
+        margin-top: 1em;
+        
+    }
+    
+    h6{
+        font-size: 17px;
+        font-weight: 700;
+        color: black;
+        padding: 1em;
+    }
+    
+    p{
+        font-size: 16px;
+        color:darkgoldenrod;
+        margin: 15px 0 20px 0;
+    }
+    
+    body{
+        width: 100%;
+        color: whitesmoke;
+    }
+    
+    /**********Header**********/
+    
+    #header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1px 10px;
+        background-color:white;
+        box-shadow: 2px 5px rgba(0, 0, 0, 0);
+        z-index: 9;
+        position: sticky;
+        top: 0;
+        left: 0;
+    }
+    #navbar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #navbar li{
+        list-style: none;
+        padding: 10px 18px;
+        position: relative;
+        
+    }
+    #navbar li a,
+    #navbar li a.active {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #1a1a1a;
+    transition: 0.3s ease;
+    }
+    #navbar li a:hover,
+    #navbar li a.active {
+        color: darkgoldenrod;
+    }
+    #navbar li a.active::after,
+    #navbar li a:hover::after{
+        content: " ";
+        width: 39px;
+        height: 3px;
+        background-color: darkgoldenrod;
+        position: absolute;
+        bottom: -1px;
+        left: 19px;
+    }
+    /**********Blog Page******/
+    #hero{
+    background-image: url(Images/law.jpg);
+    position: relative;
+    height: 70vh;
+    width: 100%;
+    background-size: cover;
+    background-position: top 50% right 0;
+    padding: 0 15px;
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content: center;
+    background-repeat: no-repeat;
+    }
+    #hero h2{
+        padding-top:  15px;
+        padding-bottom: 10px;  
+        
+    }
+    
+
+    #hero p{
+        color: whitesmoke;
+        font-weight: 700;
+        text-align: center;
+    }
+    
+   
+    
+    /**************List of Stories**********/
+    #bro{
+        padding-top: 10px;
+        padding-bottom: 1px;
+        text-align:justify;
+        text-decoration-color:black;
+        
+    }
+    
+   .item-box
+
+
+    .item-box {
+        
+        width: 180px;
+        text-align: center;
+        word-wrap: break-word;
+        border-radius: 5px;
+        border: 1px solid #e4dddd;
+        
+        }
+        
+        
+        
+        .item-box img {
+            width: 1200px;
+            height: 430px;
+        }
+    
+        button {
+            width: 10%;
+            padding: 9px;
+            margin: 1em;
+            background-color: darkgoldenrod;
+            border:1px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color:wheat;
+        }
+
+        button a {
+            text-decoration: none;
+            color: white;
+        }
+
+    
+    
+    
+    

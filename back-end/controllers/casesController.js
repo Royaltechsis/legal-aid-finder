@@ -1,3 +1,4 @@
+const { response } = require('express');
 const Cases = require('../models/cases');
 
 
@@ -43,4 +44,31 @@ exports.getCaseById = async(req, res) => {
         res.status(500).json({ error: err.message });
    
     }
+}
+
+exports.updateCase = async(req, res) => {
+    try {
+        const {caseName, caseCategory, caseDescription, caseStatus} = req.body;
+        const Case = await Cases.findById(req.params.id);
+        if(!Case){
+            return res.status(404).json({message: 'Case not found'});
+        }
+       
+        if(Case.caseStatus === true){
+            response.status(400).json({message: 'Case already closed'});
+        }
+        else{
+            Case.caseName = caseName;
+            Case.caseCategory = caseCategory;
+            Case.caseDescription = caseDescription;
+            Case.caseStatus = caseStatus;
+
+            await Case.save();
+            res.status(200).json({message: 'Case updated successfully', Case});
+        }
+
+       
+    } catch (error) {
+        res.status(500).json({ error: err.message });
+    }   
 }

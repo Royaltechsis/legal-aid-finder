@@ -89,7 +89,7 @@ exports.updateLawyerProfile = async (req, res) => {
     }
 };
 
-// Delete lawyer by ID
+
 // Delete lawyer by ID
 exports.deleteLawyer = async (req, res) => {
     try {

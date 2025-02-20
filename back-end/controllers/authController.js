@@ -2,7 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user'); // Assuming you have a User model
-//const { recompileSchema } = require('../models/lawyer');
+
 
 
 // Register a new user

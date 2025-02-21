@@ -1,176 +1,239 @@
-*{
+/* Global Styles */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "spartan", sans-serif;
-    }
-    
-    h1{
+    font-family: "Spartan", Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+
+body {
+    width: 100%;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+
+h1 {
     font-size: 50px;
-    line-height: 1;
-    color: rgb(245, 243, 240);
+    line-height: 1.2;
+    color: white;
     text-align: center;
     padding-top: 2em;
-    }
+}
+
+h2 {
+    font-size: 46px;
+    line-height: 1.2;
+    color: darkgoldenrod;
+    text-align: center;
+}
+
+h3 {
+    font-size: 20px;
+    line-height: 1.4;
+    color: black;
+    padding: 1em;
+    margin-top: 1em;
+    text-align: center;
+}
+
+h6 {
+    font-size: 17px;
+    font-weight: 700;
+    color: black;
+    padding: 1em;
+}
+
+
+p {
+    font-size: 16px;
+    color: darkgoldenrod;
+    margin: 15px 0;
+    line-height: 1.5;
+}
+
+/* Header */
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 5px;
+    background-color: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+/* Navbar */
+#navbar {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
     
-    h2{
-        font-size: 46px;
-        line-height: 1;
-        color:darkgoldenrod;
-    }
-    
-    h3{
-        font-size: 20px;
-        line-height: 1;
-        color: black;
-        padding: 1em ;
-        margin-top: 1em;
-        
-    }
-    
-    h6{
-        font-size: 17px;
-        font-weight: 700;
-        color: black;
-        padding: 1em;
-    }
-    
-    p{
-        font-size: 16px;
-        color:darkgoldenrod;
-        margin: 15px 0 20px 0;
-    }
-    
-    body{
-        width: 100%;
-        color: whitesmoke;
-    }
-    
-    /**********Header**********/
-    
-    #header{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1px 10px;
-        background-color:white;
-        box-shadow: 2px 5px rgba(0, 0, 0, 0);
-        z-index: 9;
-        position: sticky;
-        top: 0;
-        left: 0;
-    }
-    #navbar{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    #navbar li{
-        list-style: none;
-        padding: 10px 18px;
-        position: relative;
-        
-    }
-    #navbar li a,
-    #navbar li a.active {
+
+}
+
+#navbar li {
+    padding: 10px 15px;
+    position: relative;
+}
+
+#navbar li a {
     text-decoration: none;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 400;
     color: #1a1a1a;
-    transition: 0.3s ease;
-    }
-    #navbar li a:hover,
-    #navbar li a.active {
-        color: darkgoldenrod;
-    }
-    #navbar li a.active::after,
-    #navbar li a:hover::after{
-        content: " ";
-        width: 39px;
-        height: 3px;
-        background-color: darkgoldenrod;
-        position: absolute;
-        bottom: -1px;
-        left: 19px;
-    }
-    /**********Blog Page******/
-    #hero{
-    background-image: url(Images/law.jpg);
+    transition: 0.3s ease-in-out;
     position: relative;
-    height: 70vh;
+}
+
+/* Navbar Hover & Active States */
+#navbar li a:hover,
+#navbar li a.active {
+    color: darkgoldenrod;
+}
+
+#navbar li a.active::after,
+#navbar li a:hover::after {
+    content: "";
+    width: 40px;
+    height: 3px;
+    background-color: darkgoldenrod;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Hero Section */
+#hero {
+    background-image: url(Images/law.jpg);
+    height: 50vh;
     width: 100%;
     background-size: cover;
-    background-position: top 50% right 0;
-    padding: 0 15px;
-    flex-direction: column;
-    align-items:flex-start;
-    justify-content: center;
+    background-position: center;
     background-repeat: no-repeat;
-    }
-    #hero h2{
-        padding-top:  15px;
-        padding-bottom: 10px;  
-        
-    }
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    color: white;
+}
 
-    #hero p{
-        color: whitesmoke;
-        font-weight: 700;
+#hero h2 {
+    padding-top: 15px;
+}
+
+#hero p {
+    color: whitesmoke;
+    font-weight: 700;
+}
+
+/* Story Section */
+#bro {
+    padding: 20px;
+    text-align: justify;
+}
+
+/* Item Box (Story List) */
+.item-box {
+    max-width: 300px;
+    text-align: center;
+    word-wrap: break-word;
+    border-radius: 5px;
+    border: 1px solid #e4dddd;
+    padding: 15px;
+    margin: 10px auto;
+}
+
+.item-box img {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Button Styling */
+button {
+    padding: 10px 10px;
+    background-color: darkgoldenrod;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: wheat;
+}
+
+/* Button Links */
+button a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: rgb(248, 222, 155);
+    color: white;
+    margin-top: 20px;
+    
+}
+
+footer a {
+    color: #FFD700;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 40px;
+    }
+
+    h2 {
+        font-size: 34px;
+    }
+
+    #header {
+        flex-direction: column;
         text-align: center;
     }
-    
-   
-    
-    /**************List of Stories**********/
-    #bro{
-        padding-top: 10px;
-        padding-bottom: 1px;
-        text-align:justify;
-        text-decoration-color:black;
-        
-    }
-    
-   .item-box
 
+    #navbar {
+        flex-direction: column;
+    }
+
+    #navbar li {
+        padding: 8px 0;
+    }
+
+    #hero {
+        height: 40vh;
+        padding: 10px;
+    }
 
     .item-box {
-        
-        width: 180px;
-        text-align: center;
-        word-wrap: break-word;
-        border-radius: 5px;
-        border: 1px solid #e4dddd;
-        
-        }
-        
-        
-        
-        .item-box img {
-            width: 1200px;
-            height: 430px;
-        }
-    
-        button {
-            width: 10%;
-            padding: 9px;
-            margin: 1em;
-            background-color: darkgoldenrod;
-            border:1px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        button:hover {
-            background-color:wheat;
-        }
+        max-width: 90%;
+    }
+}
 
-        button a {
-            text-decoration: none;
-            color: white;
-        }
-
-    
-    
-    
-    

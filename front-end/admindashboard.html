@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Legal Aid App</title>
+    <link rel="stylesheet" href="admin.css">
+    <script defer src="admin-styles.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#users">User Management</a></li>
+            <li><a href="#content">Content Management</a></li>
+            <li><a href="#reports">Reports & Analytics</a></li>
+            <li><a href="#roles">Permissions & Roles</a></li>
+            <li><a href="#settings">System Settings</a></li>
+            <li><a href="#notifications">Notifications & Messages</a></li>
+            <li><a href="#logout" class="logout">Logout</a></li>
+        </ul>
+    </div>
+    
+    <div class="main-content">
+        <header>
+            <h1>Welcome, Admin</h1>
+        </header>
+        
+        <section id="dashboard" class="dashboard">
+            <div class="card">
+                <h3>Total Users</h3>
+                <p id="total-users">0</p>
+            </div>
+            <div class="card">
+                <h3>Active Cases</h3>
+                <p id="active-cases">0</p>
+            </div>
+            <div class="card">
+                <h3>Pending Requests</h3>
+                <p id="pending-requests">0</p>
+            </div>
+        </section>
+        
+        <section id="users" class="user-management">
+            <h2>User Management</h2>
+            <button id="add-user">Add User</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="user-list">
+                    <!-- Users will be dynamically added here -->
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="content" class="content-management">
+            <h2>Content Management</h2>
+            <button id="add-content">Add Content</button>
+            <ul id="content-list">
+                <!-- Content items will be dynamically added here -->
+            </ul>
+        </section>
+        
+        <section id="reports" class="reports-analytics">
+            <h2>Reports & Analytics</h2>
+            <p>View user activity, case requests, and system logs.</p>
+        </section>
+        
+        <section id="roles" class="permissions-roles">
+            <h2>Permissions & Roles</h2>
+            <p>Assign different access levels to users.</p>
+        </section>
+        
+        <section id="settings" class="system-settings">
+            <h2>System Settings</h2>
+            <p>Modify site configurations and service options.</p>
+        </section>
+        
+        <section id="notifications" class="notifications-messages">
+            <h2>Notifications & Messages</h2>
+            <p>Send and receive messages or alerts.</p>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Simulated data fetching
+            setTimeout(() => {
+                document.getElementById("total-users").textContent = "1250";
+                document.getElementById("active-cases").textContent = "230";
+                document.getElementById("pending-requests").textContent = "45";
+            }, 1000);
+            
+            // Sidebar toggle for mobile screens
+            const sidebar = document.querySelector(".sidebar");
+            const toggleBtn = document.createElement("button");
+            toggleBtn.textContent = "☰";
+            toggleBtn.classList.add("toggle-btn");
+            document.body.insertBefore(toggleBtn, sidebar);
+
+            toggleBtn.addEventListener("click", function () {
+                sidebar.classList.toggle("active");
+            });
+        });
+    </script>
+</body>
+</html>

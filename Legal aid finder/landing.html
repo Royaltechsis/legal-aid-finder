@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/justice logo.JPG" type="image/jpg">
+    <title>JUSTICE SEEKER LEGAL AID</title>
+    <link rel="stylesheet" href="landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header id="header">
+        <a href="#" class="logo">
+            <img src="images/justice seeker logo.JPG" alt="Justice Seeker Logo" class="logo-img">
+        </a>
+        <nav>
+            <ul id="navbar">
+                <li><a class="active" href="#">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#lawyers">Lawyers</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+            </ul>
+        </nav>
+        <button class="btn"><a href="login.html">Login</a></button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Find the Legal Help You Need, Anytime.</h1>
+            <p>Finding the right legal assistance shouldn't be complicated. Our platform connects you with experienced legal professionals quickly. We make the process stress-free and efficient.</p>
+            <button class="btn">Get Started</button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search for legal aid providers...">
+            <button onclick="searchLegalAid()" class="btn">Search</button>
+        </div>
+    </section>
+
+   
+    <!-- About Us Section -->
+    <section id="about">
+        <div class="container">
+            <h1>Welcome to Justice Seeker</h1>
+            <p>At <strong>Justice Seeker</strong>, we believe that justice should be accessible to everyone, regardless of their background, financial situation, or geographic location. Our platform connects individuals with qualified legal professionals quickly, ensuring a seamless, efficient process to access legal aid.</p>
+
+            <h2>Our Mission</h2>
+            <p>The primary mission of <strong>Justice Seeker</strong> is to bridge the gap between individuals seeking legal help and trusted legal professionals. We simplify the process of finding and receiving legal assistance, offering a user-friendly platform where people can connect with lawyers and legal aid organizations based on their specific needs.</p>
+
+            <h2>Why Choose Justice Seeker?</h2>
+            <ul>
+                <li><strong>Comprehensive Legal Database:</strong> We offer an extensive database of vetted legal professionals, ranging from family law to criminal defense.</li>
+                <li><strong>User-Friendly Interface:</strong> Our platform makes it easy to find legal professionals that match your needs, location, and budget.</li>
+                <li><strong>Pro Bono Services:</strong> We provide access to free or low-cost legal services through our partnerships with legal aid organizations.</li>
+                <li><strong>Verified Professionals:</strong> All professionals on our platform are verified for experience, ethical practices, and qualifications.</li>
+            </ul>
+
+            <h2>Our Core Values</h2>
+            <ul>
+                <li><strong>Integrity:</strong> We ensure all listed professionals follow the highest standards of ethics.</li>
+                <li><strong>Empowerment:</strong> We provide knowledge and resources to empower individuals to make informed legal decisions.</li>
+                <li><strong>Transparency:</strong> Clear, accessible, and honest information ensures users can trust the legal professionals they connect with.</li>
+            </ul>
+
+            <button class="btn" onclick="toggleContent()">Read More</button>
+            <div id="extraContent" class="extra-content">
+                <p><strong>Compassion:</strong> We aim to provide not just professional but compassionate support, understanding that legal matters can be stressful.</p>
+                <p><strong>Inclusivity:</strong> We serve people from all walks of life, ensuring everyone has access to the legal help they need.</p>
+            </div>
+        </div>
+    </section
+
+    <!-- Lawyers Section -->
+    <section id="lawyers" class="section-padding">
+        <h2>Find Lawyers</h2>
+        <div class="lawyers-list" id="lawyers-list">
+            <!-- Lawyer Listings will be dynamically populated here -->
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section-padding">
+        <h2>What Our Clients Say</h2>
+        <div class="testimonials-container" id="testimonials-container">
+            <!-- Testimonial Cards will be dynamically populated here -->
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Justice Seeker Legal Aid. All rights reserved.</p>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="landing.js"></script>
+</body>
+
+</html>

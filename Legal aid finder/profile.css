@@ -1,0 +1,136 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Header */
+header {
+    background-color: #B8860B;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    align-items: center;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo h1 {
+    margin-left: 15px;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+header nav ul li a.active {
+    text-decoration: underline;
+}
+
+/* Profile Container */
+.profile-container {
+    padding: 30px;
+    background-color: white;
+    max-width: 800px;
+    margin: 30px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container h2 {
+    text-align: center;
+    color: #333;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.input-group input:focus {
+    border-color: #B8860B;
+}
+
+.btn {
+    background-color: #B8860B;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background-color: #FFB14E;
+}
+
+.previous-lawyers {
+    margin-top: 40px;
+}
+
+.previous-lawyers h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.previous-lawyers ul {
+    list-style: none;
+    padding: 0;
+}
+
+.previous-lawyers ul li {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 725px) {
+    .profile-container {
+        padding: 20px;
+        width: 90%;
+    }
+    .input-group input{
+        width: 90%;
+    }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Justice Seeker</title>
+    <link rel="stylesheet" href="dash.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="images/justice seeker logo.JPG" alt="Justice Seeker Logo" style="width: 80px; height: 90px;">
+            <h1>Justice Seeker</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Dashboard Section -->
+    <div class="dashboard-container">
+        <div class="profile-summary">
+            <h2>Welcome, <span id="userName">Jeffery</span></h2>
+            <p>View and connect with available lawyers that can help you with your case.</p>
+        </div>
+
+        <!-- Search for Lawyers -->
+        <section class="search-section">
+            <h3>Search for Lawyers</h3>
+            <input type="text" id="searchInput" placeholder="Enter a specialty (e.g., Family, Criminal, etc.)">
+            <button onclick="searchLawyers()">Search</button>
+        </section>
+
+        <!-- Lawyers List -->
+        <section class="lawyer-list">
+            <h3>Available Lawyers</h3>
+            <div id="lawyerList">
+                <!-- Dynamic list of lawyers will appear here -->
+            </div>
+        </section>
+    </div>
+
+    <script src="dash.js"></script>
+</body>
+</html>

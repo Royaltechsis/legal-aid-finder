@@ -1,5 +1,6 @@
-const Lawyers = require('../models/lawyer'); // Import the Lawyers model
- const bcrypt = require('bcryptjs'); // Import bcrypt for hashing passwords
+const Lawyer = require('../models/lawyer'); // Ensure correct import
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 // Register lawyer
 exports.registerLawyer = async (req, res) => {
@@ -15,22 +16,22 @@ exports.registerLawyer = async (req, res) => {
         }
 
         // Check if lawyer already exists
-        let lawyer = await Lawyers.findOne({ email });
+        let lawyer = await Lawyer.findOne({ email });
         if (lawyer) {
             return res.status(400).json({ msg: 'Lawyer already exists' });
         }
 
         // Hash password
-       const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         // Create and save lawyer
-        const newLawyer = new Lawyers({
+        const newLawyer = new Lawyer({
             name,
             email,
             niche,
             bio,
             profilepic,
-            password : hashedPassword
+            password: hashedPassword
         });
 
         await newLawyer.save();
@@ -42,11 +43,37 @@ exports.registerLawyer = async (req, res) => {
     }
 };
 
+// Login lawyer
+exports.loginLawyer = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // Check if lawyer exists
+        const lawyer = await Lawyer.findOne({ email });
+        if (!lawyer) {
+            return res.status(404).json({ message: 'Lawyer not found' });
+        }
+
+        // Check password
+        const isMatch = await bcrypt.compare(password, lawyer.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
+
+        // Generate JWT
+        const token = jwt.sign({ id: lawyer._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        res.status(200).json({ token, lawyer });
+    } catch (error) {
+        console.error('Error logging in lawyer:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
 
 // Get all lawyers
 exports.getAllLawyers = async (req, res) => {
     try {
-        const lawyers = await Lawyers.find();
+        const lawyers = await Lawyer.find();
         res.status(200).json(lawyers);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -56,16 +83,19 @@ exports.getAllLawyers = async (req, res) => {
 // Get lawyer by ID
 exports.getLawyerById = async (req, res) => {
     try {
-        const lawyer = await Lawyers.findById(req.params.id);
+        const lawyerId = req.params.id;
+        const lawyer = await Lawyer.findById(lawyerId);
+
         if (!lawyer) {
             return res.status(404).json({ message: 'Lawyer not found' });
         }
+
         res.status(200).json(lawyer);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+    } catch (error) {
+        console.error('Error fetching lawyer information:', error);
+        res.status(500).json({ message: 'Server error' });
     }
 };
-
 
 // Update lawyer profile
 exports.updateLawyerProfile = async (req, res) => {
@@ -74,7 +104,7 @@ exports.updateLawyerProfile = async (req, res) => {
         const updates = req.body; // Get new profile data
 
         // Find lawyer and update
-        const updatedLawyer = await Lawyers.findByIdAndUpdate(lawyerId, updates, {
+        const updatedLawyer = await Lawyer.findByIdAndUpdate(lawyerId, updates, {
             new: true, // Return updated lawyer
             runValidators: true // Ensure validation rules apply
         });
@@ -89,13 +119,12 @@ exports.updateLawyerProfile = async (req, res) => {
     }
 };
 
-
 // Delete lawyer by ID
 exports.deleteLawyer = async (req, res) => {
     try {
         const lawyerId = req.params.id; // Get lawyer ID from URL
 
-        const lawyer = await Lawyers.findByIdAndDelete(lawyerId);
+        const lawyer = await Lawyer.findByIdAndDelete(lawyerId);
         if (!lawyer) {
             return res.status(404).json({ message: 'Lawyer not found' });
         }

@@ -11,7 +11,7 @@
     <!-- Signup Form Section -->
     <div class="signup-container">
         <h1>Sign Up for Justice Seeker</h1>
-        <form id="signupForm" onsubmit="return validateForm()">
+        <form id="signupForm">
             <div class="input-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username" required>
@@ -27,6 +27,17 @@
             <div class="input-group">
                 <label for="confirmPassword">Confirm Password</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+            </div>
+            <div class="input-group">
+                <label for="phonenumber">Phone Number</label>
+                <input type="text" id="phonenumber" name="phonenumber" placeholder="Enter your phone number" required>
+            </div>
+            <div class="input-group">
+                <label for="role">Select Role</label>
+                <select name="role" id="role" required>
+                    <option value="lawyer">Lawyer</option>
+                    <option value="user">User</option>
+                </select>
             </div>
             <button type="submit" class="btn">Sign Up</button>
         </form>

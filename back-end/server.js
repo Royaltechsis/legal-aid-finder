@@ -1,9 +1,10 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const authMiddleware = require('./middleware/authMiddleware'); // Import the auth middleware
+const cors = require('cors'); // Import the cors package
 
 const app = express();
+app.use(cors()); // Enable CORS
 app.use(express.json()); // Middleware for JSON parsing
 
 // Connect to MongoDB Atlas
@@ -19,7 +20,8 @@ mongoose.connect(process.env.MONGO_URI, {
 // Routes
 app.use('/api/Lawyers', require('./routes/lawyerRoute'));
 app.use('/api/auth', require('./routes/authRoute'));
- app.use('/api/user', require('./routes/userRoute')); // Comment or remove this line if not needed
+app.use('/api/users', require('./routes/userRoute'));
+app.use('/api/admin', require('./routes/adminRoute'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

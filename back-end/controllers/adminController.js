@@ -1,7 +1,7 @@
 const admin = require('../models/user');
-const User = require("../models/userModel");
-const Lawyer = require("../models/lawyerModel");
-const Complaint = require("../models/complaintModel");
+const User = require("../models/user");
+const Lawyer = require("../models/lawyer");
+const Complaint = require("../models/complaints");
 
 // Approve a lawyer
 exports.approveLawyer = async (req, res) => {
@@ -61,6 +61,16 @@ exports.resolveComplaint = async (req, res) => {
         complaint.status = "Resolved";
         await complaint.save();
         res.status(200).json({ message: "Complaint resolved" });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+//get all users
+exports.getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find();
+        res.status(200).json(users);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

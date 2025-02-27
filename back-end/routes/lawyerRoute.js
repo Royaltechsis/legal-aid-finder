@@ -5,8 +5,9 @@ const authMiddleware = require('../middleware/authMiddleware'); // Import the au
 
 // Define routes correctly
 router.post('/register', lawyerController.registerLawyer);
-router.get('/', authMiddleware, lawyerController.getAllLawyers); 
-router.get('/:id', authMiddleware, lawyerController.getLawyerById);
-router.put('/profile/:id', authMiddleware, lawyerController.updateLawyerProfile); 
-router.delete('/:id', authMiddleware, lawyerController.deleteLawyer); 
+router.get('/', lawyerController.getAllLawyers); 
+router.get('/:id',  lawyerController.getLawyerById);
+router.put('/profile/:id', lawyerController.updateLawyerProfile); 
+router.delete('/:id',  lawyerController.deleteLawyer); 
+router.post('/login', lawyerController.loginLawyer);
 module.exports = router;

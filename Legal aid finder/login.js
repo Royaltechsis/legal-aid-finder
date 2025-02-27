@@ -35,8 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Login successful');
                 // Save the token to localStorage or state
                 localStorage.setItem('token', result.token);
-                // Redirect to dashboard or another page
-                window.location.href = 'dash.html';
+                // Redirect based on role
+                if (result.role === 'Admin') {
+                    window.location.href = 'admindashboard.html';
+                } else {
+                    window.location.href = 'dash.html';
+                }
             } else {
                 alert(`Error: ${result.message}`);
             }

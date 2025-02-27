@@ -47,50 +47,30 @@ const registerController = async (req, res) => {
     }
 };
 //LOGIN
+// Login user
 const loginController = async (req, res) => {
     try {
         const { email, password } = req.body;
-        //validation
-        if (!email || !password) {
-            return res.status(500).send({
-                success: false,
-                message: "Please Provide Email Or Password",
-            });
-        }
-        //check user
-        const user = await User.findOne({email});
+
+        // Check if user exists
+        const user = await User.findOne({ email });
         if (!user) {
-            return res.status(404).send({
-                success: false,
-                message: "User Not Found",
-            });
+            return res.status(404).json({ message: 'User not found' });
         }
-        //check user password and compare password
-        const ismatch = await bcrypt.compare(password, user.password);
-        if (!ismatch) {
-            return res.status(500).send({
-                success:false,
-                message: "Invalid Login Details!",
-            });
+
+        // Check password
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Invalid credentials' });
         }
-        //token
-        const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {
-            expiresIn: "7d",
-        });
-        user.password = undefined;
-        res.status(200).send({
-            success: true,
-            message: "Login Successful",
-            token,
-            user,
-        });
+
+        // Generate JWT
+        const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        res.status(200).json({ token, role: user.role });
     } catch (error) {
-        console.log(error);
-        res.status(500).send({
-            success: false,
-            message: "Error In Login",
-            error,
-        });
+        console.error('Error logging in user:', error);
+        res.status(500).json({ message: 'Server error' });
     }
 };
 

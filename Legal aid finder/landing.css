@@ -9,6 +9,7 @@ body {
     font-family: 'Poppins', sans-serif;
     /* background-color: black; */
     color: #333;
+    flex-direction: column;
 }
 a{
     color: white;

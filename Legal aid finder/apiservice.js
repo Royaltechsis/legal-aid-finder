@@ -1,4 +1,6 @@
-const API_URL = 'http://localhost:3000/api'; // Replace with your backend URL
+const API_URL = 'https://legal-aid-finder-backend.vercel.app/api'; // Replace with your backend URL
+
+//legal-aid-finder-backend.vercel.app
 
 // Register a new user
 const registerUser = async (userData) => {
